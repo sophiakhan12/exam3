@@ -1,0 +1,41 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', init);
+    
+    function init(){
+        document.getElementById("city").addEventListener("change", loadTable);     
+    }
+    
+    function loadTable(){
+        var city = document.getElementByID("city").value;
+
+        fetch("/suppliersearchresult?cityName=" + city,
+        {
+            method: "GET",
+        }).then(response => response.text()).then(data=> {
+            document.getElementById("placeholder").innerHTML = data;
+        }).catch(error => {
+            console.error(error);
+        })
+
+    }
+
+
+</script>
+    <label for="">Choose a city:
+    <select id="city" class="form-select" aria-label="Default select example"> 
+        <option selected></option>
+        <option value="London">London</option>
+        <option value="Tokyo">Tokyo</option>
+        <option value="Berlin">Berlin</option>
+        <option value="Sydney">Sydney</option>
+    </select>
+
+    <div id="placeholder"></div>
+      
+
+{% endblock content %}
