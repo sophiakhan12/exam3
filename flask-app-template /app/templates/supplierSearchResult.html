@@ -1,0 +1,22 @@
+<div class="table-responsive">
+    <table class="table table-striped table-hover table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">SupplierID</th>
+                <th scope="col">CompanyName</th>
+                <th scope="col">City</th>
+                <th scope="col">Country</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for supplier in suppliersData %}
+            <tr>
+                <td>{{ supplier.SupplierID }}</td>
+                <td>{{ supplier.CompanyName }}</td>
+                <td>{{ supplier.City }}</td>
+                <td>{{ supplier.Country }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

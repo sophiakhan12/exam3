@@ -1,0 +1,38 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+
+<script>
+    //ajax code below
+    document.addEventListener('DOMContentLoaded', init);
+    function init(){
+        document.getElementById("city").addEventListener("change", tableLoader);  
+    }
+        function tableLoader(){
+        var city = document.getElementById("city").value;
+            fetch("/suppliersearchresult/" + city, {
+                method: "GET",
+            }).then(response => response.text()).then(data=> {
+                console.log(data);
+                document.getElementById("placeholder").innerHTML = data;
+            }).catch(error => {
+                console.error(error);
+            })
+    }
+</script>
+    <label for="">Search for suppliers by city:
+    <select id="city" class="form-select" aria-label="Default select example"> 
+        <option selected disabled hidden value="">Select a City</option>
+        <option value="London">London</option>
+        <option value="Tokyo">Tokyo</option>
+        <option value="Berlin">Berlin</option>
+        <option value="Sydney">Sydney</option>
+    </select>
+    </label>
+
+    <div id="placeholder"></div>
+    
+      
+
+{% endblock content %}
+
